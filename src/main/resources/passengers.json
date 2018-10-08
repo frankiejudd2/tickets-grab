@@ -1,0 +1,28 @@
+[
+  {
+    "passengerMobile": null,
+    "passengerName": "XX",
+    "passportTypeId": "1",
+    "passportNo": "XXXX2419900418XXXX",
+    "trainTicketType": "1",
+    "policyProductNo": "",
+    "passengerId": "",
+    "birthday": "",
+    "sex": "M",
+    "isPassengerSave": true,
+    "insurancePrice": 0
+  },
+  {
+    "passengerMobile": null,
+    "passengerName": "XX2",
+    "passportTypeId": "1",
+    "passportNo": "XXXX2419900418XXXX",
+    "trainTicketType": "1",
+    "policyProductNo": "",
+    "passengerId": "",
+    "birthday": "",
+    "sex": "F",
+    "isPassengerSave": true,
+    "insurancePrice": 0
+  }
+]

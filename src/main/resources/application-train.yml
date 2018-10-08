@@ -1,0 +1,36 @@
+######### [车次信息] #########
+#出发城市 如 深圳
+from-station: 深圳
+#目的城市 如 上海
+to-station: 上海
+#是否只看高铁/动车
+just-gd: true
+#车次日期 如 2018-04-09
+dept-date: 2018-04-09
+#时间范围 （火车发车时间范围限制，不填默认不限制） 如：10:30-14:50 注意冒号使用英文的:
+time-range: 10:30-15:50
+#座位名称 如：二等座，一等座，无座
+seat-name: 二等座
+
+######### [乘客信息] #########
+passengers: passengers
+
+######### [登陆信息] #########
+#12306.com登陆用户名
+account: 186XXXXXXXX
+#12306.com登陆用户密码
+password: XXXXXXXXXX
+
+######### [联系人信息] #########
+#联系人号码 如 13888888888
+contact-mobile: 13888888888
+#联系人姓名 如 张三
+contact-name: 张三
+
+######### [钉钉通知] #########
+#钉钉自定义机器人的webhookToken，不使用钉钉机器人进行通知则不填 如 https://oapi.dingtalk.com/robot/send?access_token=4a637ce2b7ce6c0be48fc3388265345ee1cd4ea036ce705112ed618924f987aa
+webhook-token:
+
+######### [抢票模式] #########
+#1 极速模式  2 丧心病狂模式  3 为了抢票不要命模式 4 无脑下单模式
+mode: 1
