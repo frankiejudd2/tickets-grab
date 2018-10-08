@@ -74,7 +74,8 @@ public class ReaperServiceImpl implements ReaperService {
     @Override
     public void monitor() {
         try {
-            logger.info("开始进行第 " + counter.getAndIncrement() + " 次检测");
+            logger.info("开始进行第 " + counter.getAndIncrement() + " 次检测。");
+            logger.info("参数--" + "fromStation：" + fromStation + "；toStation：" + toStation + "；deptDate：" + deptDate + "；timeRange：" + timeRange);
 
             Map<String, String> headers = new HashMap<>();
             headers.put("Accept", "*/*");
