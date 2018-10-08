@@ -137,7 +137,7 @@ public abstract class JsonUtils {
     public static String getJsonPassengers(String passengers) {
         try {
             InputStream inputStream = JsonUtils.class.getClassLoader().getResourceAsStream(passengers + ".json");
-            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             StringBuffer buffer = new StringBuffer();
             String line = "";
             while ((line = in.readLine()) != null) {
