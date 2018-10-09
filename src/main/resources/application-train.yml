@@ -40,10 +40,13 @@ spring:
   mail:
     default-encoding: utf-8
     #发送者的邮箱账号
-    host: smtp.XXXXXX.com
+    host: smtp.mxhichina.com
     #发送者的邮箱密码
     password: XXXXXXXXXXX
-    port: 25
-    protocol: smtp
-    username: XXXXXXXX_post@XXXXXX.com
-    sendto: XXXXXXXXXX@qq.com
+    port: 80
+    username: XXXXXXXXXX_post@XXXXXX.com
+    sendto: XXXXXXXXXXX@qq.com
+    properties:
+      mail:
+        smtp:
+          auth: true
