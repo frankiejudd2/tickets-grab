@@ -1,3 +1,5 @@
 spring:
   profiles:
     active: train2
+server:
+  port: 9006

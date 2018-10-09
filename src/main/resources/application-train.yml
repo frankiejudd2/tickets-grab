@@ -34,3 +34,16 @@ webhook-token:
 ######### [抢票模式] #########
 #1 极速模式  2 丧心病狂模式  3 为了抢票不要命模式 4 无脑下单模式
 mode: 1
+
+######### [邮箱设置] #########
+spring:
+  mail:
+    default-encoding: utf-8
+    #发送者的邮箱账号
+    host: smtp.XXXXXX.com
+    #发送者的邮箱密码
+    password: XXXXXXXXXXX
+    port: 25
+    protocol: smtp
+    username: XXXXXXXX_post@XXXXXX.com
+    sendto: XXXXXXXXXX@qq.com

@@ -12,9 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +34,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ReaperServiceImpl implements ReaperService {
 
     private static final Logger logger = LoggerFactory.getLogger(ReaperServiceImpl.class);
+
+    @Resource
+    JavaMailSender jms;
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("H:mm");
 
@@ -58,6 +64,10 @@ public class ReaperServiceImpl implements ReaperService {
     String timeRange;
     @Value("${passengers}")
     String passengers;
+    @Value("${spring.mail.username}")
+    String sendFrom;
+    @Value("${spring.mail.sendto}")
+    String sendTo;
 
     String trainInfoUrl;
 
@@ -297,15 +307,24 @@ public class ReaperServiceImpl implements ReaperService {
                 logger.info("状态:" + statusTextNode.asText());
                 if (statusTextNode.asText().contains("占座成功")) {
                     DingRobotUtils.send(webhookToken, "出发时间:" + deptDate + " " + deptTimeNode.asText() + "\r车次:" + trainCodeNode.asText() + " [" + deptStationName + " 开往 " + arrStationName + "]\r票数:" + seatNum.asText() + " [" + seatName + " ￥" + classSeatNode.get("seatPrice").asText() + "] \r状态:" + statusTextNode.asText() + "\r", true);
+
+                    //建立邮件消息
+                    SimpleMailMessage mainMessage = new SimpleMailMessage();
+                    mainMessage.setFrom(sendFrom);
+                    mainMessage.setTo(sendTo);
+                    //发送的标题
+                    mainMessage.setSubject("占座成功：通知，尽快付款！");
+                    //发送的内容
+                    mainMessage.setText("出发时间:" + deptDate + " " + deptTimeNode.asText() + "\r车次:" + trainCodeNode.asText() + " [" + deptStationName + " 开往 " + arrStationName + "]\r票数:" + seatNum.asText() + " [" + seatName + " ￥" + classSeatNode.get("seatPrice").asText() + "] \r状态:" + statusTextNode.asText() + "\r");
+                    jms.send(mainMessage);
+
                     System.exit(0);
                     return;
                 }
                 //不是占座成功一般都是占座失败，跳出循环
                 break;
             }
-
         }
-
     }
 
     private String getAccessTokenByLogin(String account, String password, String webhookToken) {
